@@ -10,13 +10,7 @@ public class Program {
 		
 		String filePath = "C:\\Users\\victor.couto\\OneDrive - ALS Limited\\Desktop\\arquivo.txt";
 		
-		FileReader fr = null;
-		BufferedReader br = null;
-		
-		try {
-			fr = new FileReader(filePath);
-			br = new BufferedReader(fr);
-			
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String line = br.readLine();
 			
 			while (line != null) {
@@ -25,13 +19,6 @@ public class Program {
 			}
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
-		} finally {
-			try {
-				if (fr != null) fr.close();
-				if (br != null) br.close();
-			} catch (IOException e) {
-				e.getStackTrace();
-			}
-		}
+		} 
 	}
 }
